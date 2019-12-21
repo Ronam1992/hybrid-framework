@@ -1,0 +1,6 @@
+public class Xcel {
+public static void excel(String sheet,int row,int cell,String excel) throws EncryptedDocumentException, FileNotFoundException, IOException {
+Workbook wb=WorkbookFactory.create(new FileInputStream(excel));
+String data = wb.getSheet(sheet).getRow(row).getCell(cell).toString();
+}
+}
