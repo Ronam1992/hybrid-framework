@@ -1,0 +1,26 @@
+public abstract class Basetest implements Iautoconfig {
+	static {
+		System.setProperty(Key, value);
+	}
+public WebDriver driver;
+	@BeforeTest
+	public void openbrowser() {
+	 driver=new ChromeDriver();
+	driver.manage().timeouts().implicitlyWait(ito, TimeUnit.SECONDS);
+	driver.get(url);
+	}
+    @AfterTest
+    public void closebrowser(ITestResult testresult) throws IOException {
+    	int result = testresult.getStatus();
+    	if(result==1) {
+    		Reporter.log("testcase is pass",true);
+    	}
+    	else {
+    		Reporter.log("testcase is fail",true);
+    		Screenshot.takeimage(driver,img);
+    		
+    	}driver.close();
+	
+}
+	
+}
