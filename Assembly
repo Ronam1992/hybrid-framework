@@ -1,0 +1,15 @@
+ublic class Assembly extends Basetest{
+	@Test
+	public void testassembly() throws EncryptedDocumentException, FileNotFoundException, IOException  {
+//		 String un = Excel.excel(sheet, 1,0, path);
+//		 String pwd = Excel.excel(sheet, 1,1, path);
+		 Loginpage ld=new Loginpage(driver);
+		 ld.login();
+		 driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+         ld.username("admin");
+		 driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		 ld.password("password");
+		 ld.signinbutton();
+		
+	}
+}
