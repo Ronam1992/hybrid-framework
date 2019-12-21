@@ -1,0 +1,12 @@
+public class Screenshot  {
+	
+public static void takeimage(WebDriver driver,String img) throws IOException {
+	
+	 TakesScreenshot ts=((TakesScreenshot)driver);
+	 File src = ts.getScreenshotAs(OutputType.FILE);
+	 File des=new File(img);
+	 FileUtils.copyFile(src, des);
+	 
+
+}
+}
