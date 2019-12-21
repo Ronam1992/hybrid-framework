@@ -1,0 +1,31 @@
+
+public class Assembly {
+	static {
+		System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+	}
+
+public static void main(String[] args) throws EncryptedDocumentException, FileNotFoundException, IOException {
+	
+	WebDriver driver=new ChromeDriver();
+	driver.manage().window().maximize();
+	driver.get("http://103.92.47.152/assembly_question/");
+	driver.findElement(By.xpath("//a[text()='Login']")).click();
+    Workbook wb = WorkbookFactory.create(new FileInputStream("./Excel/New Microsoft Office Excel Worksheet (2).xlsx"));
+    String un = wb.getSheet("Assembly").getRow(1).getCell(0).toString();
+    String pwd=wb.getSheet("Assembly").getRow(1).getCell(1).toString();
+	driver.findElement(By.id("username")).sendKeys(un);
+	driver.findElement(By.id("password")).sendKeys(pwd);
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+	driver.findElement(By.xpath("//button[text()='Sign in']")).click();
+	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+	//driver.close();
+    TakesScreenshot ts=((TakesScreenshot)driver);
+	File src = ts.getScreenshotAs(OutputType.FILE);
+	File des=new File("C:\\Users\\Luminous\\Downloads\\Java\\Hybrid\\screenshot");
+	FileUtils.copyFileToDirectory(src, des);
+	driver.close();
+	
+	
+}
+}
