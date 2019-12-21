@@ -1,0 +1,14 @@
+public interface Iautoconfig {
+ String   Key="webdriver.chrome.driver";
+ String  value="./driver/chromedriver.exe";
+String   url="http://103.92.47.152/assembly_question/";
+int ito=10;
+String img="./images/";
+String excel="./xcel/demo.xlsx";
+String sheet="demo";
+
+
+
+
+
+}
