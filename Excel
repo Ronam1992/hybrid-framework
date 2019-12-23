@@ -4,3 +4,27 @@ Workbook wb=WorkbookFactory.create(new FileInputStream(excel));
 String data = wb.getSheet(sheet).getRow(row).getCell(cell).toString();
 }
 }
+or
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+
+public class XL {
+public static String getdata(String path,String Sheet,int r,int c){
+String v="";
+			try {
+				Workbook wb= WorkbookFactory.create(new FileInputStream(path));
+				 v=wb.getSheet(Sheet).getRow(r).getCell(c).toString();
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+			return v;
+
+}}
+
