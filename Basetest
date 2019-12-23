@@ -1,26 +1,32 @@
-public abstract class Basetest implements Iautoconfig {
-	static {
-		System.setProperty(Key, value);
-	}
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+public abstract class Basetest implements Iconst {
 public WebDriver driver;
-	@BeforeTest
-	public void openbrowser() {
-	 driver=new ChromeDriver();
-	driver.manage().timeouts().implicitlyWait(ito, TimeUnit.SECONDS);
-	driver.get(url);
-	}
-    @AfterTest
-    public void closebrowser(ITestResult testresult) throws IOException {
-    	int result = testresult.getStatus();
-    	if(result==1) {
-    		Reporter.log("testcase is pass",true);
-    	}
-    	else {
-    		Reporter.log("testcase is fail",true);
-    		Screenshot.takeimage(driver,img);
-    		
-    	}driver.close();
-	
+static{
+	System.setProperty( CHROME_KEY, CHROME_VALUE);
 }
-	
+@BeforeMethod
+public void openBrowser(){
+	driver=new ChromeDriver();
+	driver.get(URL);
+}
+
+@AfterMethod
+public void closeBrowser(ITestResult itest){
+	int s=itest.getStatus();
+String meth=	itest.getName();
+if(s==1){
+	Reporter.log("Test"+ meth +"is pass",true);
+}else
+{
+	Reporter.log("Test"+ meth +"is fail",true);
+Images.getImage(driver,Screenshot_path+meth+".png");
+}
+	driver.quit();
+}
 }
